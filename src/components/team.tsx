@@ -1,11 +1,5 @@
 import React from "react";
 import Image from "next/image";
-// import Stack from "@mui/material/Stack";
-// import Container from "@mui/material/Container";
-// import Card from "@mui/material/Card";
-// import CardContent from "@mui/material/CardContent";
-// import CardMedia from "@mui/material/CardMedia";
-// import Typography from "@mui/material/Typography";
 
 import MaddiePortrait from "../../public/images/maddie_port.png";
 import PennyPortrait from "../../public/images/penny_port.png";
@@ -17,18 +11,6 @@ interface TeamMemberProps
   bio: string;
   title: string;
 }
-
-// const TeamMember: React.FC<TeamMemberProps> = ({ name, image, bio }) => {
-//   return (
-//     <div className="grid grid-rows-2 md:grid-cols-2">
-//       <div className="row-span-1 md:col-span-1">{image}</div>
-//       <div className="row-span-1 md:col-span-1">
-//         <h1 className="text-slate-800">{name}</h1>
-//         <p className="text-slate-500">{bio}</p>
-//       </div>
-//     </div>
-//   );
-// };
 
 const MaddieBrooks: TeamMemberProps = {
   name: "Maddie Brooks",
@@ -64,10 +46,7 @@ const PennyBryant: TeamMemberProps = {
   ),
 };
 
-// const teamMembers: TeamMemberProps[] = [MaddieBrooks];
 const teamMembers: TeamMemberProps[] = [MaddieBrooks, PennyBryant];
-
-// type TeamProps = Omit<React.ComponentProps<"div">, "className" | "children">;
 
 export const Team = () => {
   return (
