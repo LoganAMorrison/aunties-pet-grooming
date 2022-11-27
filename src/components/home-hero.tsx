@@ -79,11 +79,12 @@ export const Header = () => {
           <div className="flex flex-col">
             {/* ===== */}
             <div className="wx-auto flex justify-center py-8">
-              <Link href="/">
+              <Link href="/" aria-label="Navigate to Aunties Pet Grooming home">
                 <LogoOutline
                   fill="#059595"
                   backgroundColor="#fff"
                   className="w-52"
+                  aria-label="Aunties Pet Grooming LLC Logo"
                 />
               </Link>
             </div>

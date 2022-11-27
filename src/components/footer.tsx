@@ -41,10 +41,16 @@ export const InfoFooter = () => {
         <div className="my-auto py-3 text-center text-3xl text-slate-100">
           <h1>Aunties Pet Grooming</h1>
           <div className="flex flex-row justify-center space-x-2">
-            <a href={siteMetadata.facebookUrl}>
+            <a
+              href={siteMetadata.facebookUrl}
+              aria-label="Visit the Aunties Pet Grooming Facebook page"
+            >
               <Facebook width="30" className="fill-cyan-600" />
             </a>
-            <a href={siteMetadata.instagramUrl}>
+            <a
+              href={siteMetadata.instagramUrl}
+              aria-label="Visit the Aunties Pet Grooming Instagram page"
+            >
               <Instagram width="30" className="fill-cyan-600" />
             </a>
           </div>
