@@ -286,7 +286,7 @@ export const Services = () => {
           {/*  */}
           {/*  */}
 
-          <section className="order-first flex flex-col rounded-3xl bg-cyan-600 px-6 py-8 sm:px-8 lg:order-none">
+          <section className="order-first flex flex-col rounded-3xl bg-cyan-700 px-6 py-8 sm:px-8 lg:order-none">
             {/* <h3 className="mt-5 font-display text-lg text-white"> */}
             {/*   Haircut Service */}
             {/* </h3> */}

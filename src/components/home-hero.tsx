@@ -99,35 +99,40 @@ export const Header = () => {
             </div>
           </div>
         </div>
-        {transitions(({ opacity }, item) =>
-          item ? (
-            <></>
-          ) : (
-            <div className="mx-auto my-auto h-[300px] w-[300px]">
-              <animated.div
-                style={{
-                  opacity: opacity.to((v) => g(v, 1)),
-                }}
-              >
-                {aussie}
-              </animated.div>
-              <animated.div
-                style={{
-                  opacity: opacity.to((v) => g(v, 0)),
-                }}
-              >
-                {pug}
-              </animated.div>
-              <animated.div
-                style={{
-                  opacity: opacity.to((v) => g(v, 2)),
-                }}
-              >
-                {cat}
-              </animated.div>
-            </div>
-          )
-        )}
+        <div
+          className="mx-auto my-auto h-[300px] w-[300px] py-3"
+          aria-label="Aussie, to pug, to kitty"
+        >
+          {transitions(({ opacity }, item) =>
+            item ? (
+              <></>
+            ) : (
+              <>
+                <animated.div
+                  style={{
+                    opacity: opacity.to((v) => g(v, 1)),
+                  }}
+                >
+                  {aussie}
+                </animated.div>
+                <animated.div
+                  style={{
+                    opacity: opacity.to((v) => g(v, 0)),
+                  }}
+                >
+                  {pug}
+                </animated.div>
+                <animated.div
+                  style={{
+                    opacity: opacity.to((v) => g(v, 2)),
+                  }}
+                >
+                  {cat}
+                </animated.div>
+              </>
+            )
+          )}
+        </div>
       </div>
     </>
   );
