@@ -12,6 +12,8 @@ import {
   OutlinedInput,
 } from "@mui/material";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/pro-solid-svg-icons";
 
 import { galleryImages, Breed } from "../utils/images";
 import SiteHeader from "../components/head";
@@ -53,7 +55,44 @@ const MenuProps = {
   },
 };
 
-const Home: NextPage = () => {
+const Hero = () => {
+  return (
+    <div className="mx-auto max-w-4xl">
+      <div className="grid h-fit  grid-cols-1 bg-white pb-3 md:grid-cols-2">
+        <div className="col-span-1 flex justify-center text-4xl text-white md:my-auto md:text-5xl lg:text-7xl">
+          <div className="flex flex-col">
+            {/* ===== */}
+            <div className="wx-auto flex justify-center py-8">
+              <Link href="/" aria-label="Navigate to Aunties Pet Grooming home">
+                <LogoOutline
+                  fill="#059595"
+                  backgroundColor="#fff"
+                  className="w-52"
+                  aria-label="Aunties Pet Grooming LLC Logo"
+                />
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="mx-auto my-auto grid h-full grid-cols-1  content-around py-3">
+          <div className="text-center font-serif text-7xl font-extralight text-purple-600">
+            Gallery
+          </div>
+          <div className="text-center font-sans text-xl text-slate-500">
+            Browse photos of some of the many friends who have visited our
+            salon. We think you'll{" "}
+            <span>
+              <FontAwesomeIcon icon={faHeart} className="text-rose-500" />
+            </span>{" "}
+            what you see.
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Gallery: NextPage = () => {
   const [breedName, setBreed] = React.useState<string[]>([]);
   const handleChange = (event: SelectChangeEvent<typeof breedName>) => {
     const {
@@ -93,40 +132,36 @@ const Home: NextPage = () => {
         <header className="sticky top-0 z-50">
           <NavBar />
         </header>
-        <div className="grid grid-cols-1 md:grid-cols-2 ">
-          <div className="col-span-1 md:col-span-2 ">
-            <div className="flex justify-center align-middle">
-              <Link href="/">
-                <LogoOutline
-                  fill="#059595"
-                  backgroundColor="#fff"
-                  className="w-52"
-                />
-              </Link>
-            </div>
+
+        <Hero />
+
+        <div className="mx-auto my-3 grid max-w-4xl grid-cols-1 gap-3 px-3 py-3 lg:grid-cols-2">
+          <div className="text-center text-slate-500 lg:order-last">
+            Want to see a specific breed? Use the filter to select all the
+            breeds you'd like to see.
           </div>
-        </div>
-        <div className="mx-auto my-3 grid max-w-4xl grid-cols-2 gap-3 px-3 py-3">
-          <FormControl sx={{ m: 1, width: 300 }}>
-            <InputLabel id="breed-select-label">Filter Breed</InputLabel>
-            <Select
-              labelId="breed-select-label"
-              id="breed-select"
-              multiple
-              value={breedName}
-              input={<OutlinedInput label="Filter Breed" />}
-              renderValue={(selected) => selected.join(", ")}
-              onChange={handleChange}
-              MenuProps={MenuProps}
-            >
-              {breeds.map((name, index) => (
-                <MenuItem key={index} value={name}>
-                  <Checkbox checked={breedName.indexOf(name) > -1} />
-                  <ListItemText primary={name} />
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <div className="flex justify-center">
+            <FormControl sx={{ m: 1, width: 300 }}>
+              <InputLabel id="breed-select-label">Apply Filter</InputLabel>
+              <Select
+                labelId="breed-select-label"
+                id="breed-select"
+                multiple
+                value={breedName}
+                input={<OutlinedInput label="Filter Breed" />}
+                renderValue={(selected) => selected.join(", ")}
+                onChange={handleChange}
+                MenuProps={MenuProps}
+              >
+                {breeds.map((name, index) => (
+                  <MenuItem key={index} value={name}>
+                    <Checkbox checked={breedName.indexOf(name) > -1} />
+                    <ListItemText primary={name} />
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
         </div>
         <div className="h-full w-full">
           <div className="my-8 mx-auto grid max-w-4xl grid-cols-1 gap-3 lg:grid-cols-2 xl:grid-cols-3">
@@ -158,6 +193,6 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Gallery;
 
 // export const Head: HeadFC = () => <SEO />;
