@@ -2,7 +2,7 @@ import * as React from "react";
 import type { NextPage } from "next";
 import { Inter } from "@next/font/google";
 
-import { Header } from "../components/home-hero";
+import HomeHero from "../components/home-hero";
 import { Footer, InfoFooter } from "../components/footer";
 import { Team } from "../components/team";
 import { Services, WalkInServices } from "../components/services";
@@ -24,7 +24,7 @@ const Home: NextPage = () => {
       </SiteHeader>
       <main className={`${inter.variable} font-sans`}>
         <NavBar />
-        <Header />
+        <HomeHero />
         <Services />
         <WalkInServices />
         <Team />

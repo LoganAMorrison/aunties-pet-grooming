@@ -4,11 +4,11 @@ import className from "classnames";
 import Link from "next/link";
 
 import { LogoOutline } from "../components/logos/outline";
-import PugIcon from "../components/svg/pug";
-import AussieIcon from "../components/svg/aussie";
-import CatIcon from "../components/svg/cat";
+import PugIcon, { PugDecoration } from "../components/svg/pug";
+import AussieIcon, { AussieDecoration } from "../components/svg/aussie";
+import CatIcon, { CatDecoration } from "../components/svg/cat";
 
-export const Header = () => {
+const HomeHero = () => {
   const sty = className(
     "absolute",
     "w-[300px]",
@@ -17,31 +17,40 @@ export const Header = () => {
     "overflow-hidden"
   );
   const aussie = (
-    <AussieIcon
-      className={sty}
-      gradient={[
-        { stopColor: "#7c3aed", offset: "0" },
-        { stopColor: "#6366f1", offset: "100" },
-      ]}
-    />
+    <>
+      <AussieIcon
+        className={sty}
+        gradient={[
+          { stopColor: "#7c3aed", offset: "0" },
+          { stopColor: "#6366f1", offset: "100" },
+        ]}
+        decoration={AussieDecoration.SantaHat}
+      />
+    </>
   );
   const pug = (
-    <PugIcon
-      className={sty}
-      gradient={[
-        { stopColor: "#6366f1", offset: "0" },
-        { stopColor: "#7c3aed", offset: "100" },
-      ]}
-    />
+    <>
+      <PugIcon
+        className={sty}
+        gradient={[
+          { stopColor: "#6366f1", offset: "0" },
+          { stopColor: "#7c3aed", offset: "100" },
+        ]}
+        decoration={PugDecoration.SantaHat}
+      />
+    </>
   );
   const cat = (
-    <CatIcon
-      className={sty}
-      gradient={[
-        { stopColor: "#6366f1", offset: "0" },
-        { stopColor: "#7c3aed", offset: "100" },
-      ]}
-    />
+    <>
+      <CatIcon
+        className={`${sty}`}
+        gradient={[
+          { stopColor: "#6366f1", offset: "0" },
+          { stopColor: "#7c3aed", offset: "100" },
+        ]}
+        decoration={CatDecoration.ChristmasTree}
+      />
+    </>
   );
 
   const [toggle, set] = React.useState(false);
@@ -89,26 +98,26 @@ export const Header = () => {
               </Link>
             </div>
             {/* ===== */}
-            <div className="text-primary text-center text-5xl font-extralight">
-              Professional Pet Grooming
-            </div>
-            {/* ===== */}
-            <div className="max-w-md py-3 text-center text-xl text-black">
-              Specialized haircuts. Head-to-tail bathing. Nails, ears and
-              everything between.
+            <div className="text-center">
+              <div className="font-base text-5xl text-brand">
+                Professional Pet Grooming
+              </div>
+              {/* ===== */}
+              <div className="py-3 text-xl text-black">
+                Specialized haircuts. Head-to-tail bathing. Nails, ears and
+                everything between.
+              </div>
             </div>
           </div>
         </div>
-        <div
-          className="mx-auto my-auto h-[300px] w-[300px] py-3"
-          aria-label="Aussie, to pug, to kitty"
-        >
+        <div className="mx-auto my-auto h-[300px] w-[300px] py-3">
           {transitions(({ opacity }, item) =>
             item ? (
               <></>
             ) : (
               <>
                 <animated.div
+                  id="animated-aussie"
                   style={{
                     opacity: opacity.to((v) => g(v, 1)),
                   }}
@@ -116,6 +125,7 @@ export const Header = () => {
                   {aussie}
                 </animated.div>
                 <animated.div
+                  id="animated-pug"
                   style={{
                     opacity: opacity.to((v) => g(v, 0)),
                   }}
@@ -123,6 +133,7 @@ export const Header = () => {
                   {pug}
                 </animated.div>
                 <animated.div
+                  id="animated-cat"
                   style={{
                     opacity: opacity.to((v) => g(v, 2)),
                   }}
@@ -137,3 +148,5 @@ export const Header = () => {
     </>
   );
 };
+
+export default HomeHero;
