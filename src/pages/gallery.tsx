@@ -1,3 +1,10 @@
+// The following import prevents a Font Awesome icon server-side rendering bug,
+// where the icons flash from a very large icon down to a properly sized one:
+import "@fortawesome/fontawesome-svg-core/styles.css";
+// Prevent fontawesome from adding its CSS since we did it manually above:
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false; /* eslint-disable import/first */
+
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +18,7 @@ import {
   ListItemText,
   OutlinedInput,
 } from "@mui/material";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select, { type SelectChangeEvent } from "@mui/material/Select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/pro-solid-svg-icons";
 
@@ -44,6 +51,8 @@ const breeds = [
   Breed.StandardPoodle,
 ];
 
+const GALLERY_IMAGES = galleryImages.reverse();
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -75,15 +84,19 @@ const Hero = () => {
           </div>
         </div>
         <div className="mx-auto my-auto grid h-full grid-cols-1  content-around py-3">
-          <div className="text-center font-serif text-7xl font-extralight text-purple-600">
+          <div className="text-center font-serif text-7xl font-extralight text-brand">
             Gallery
           </div>
           <div className="text-center font-sans text-xl text-slate-500">
             Browse photos of some of the many friends who have visited our
-            salon. We think you'll{" "}
-            <span>
-              <FontAwesomeIcon icon={faHeart} className="text-rose-500" />
-            </span>{" "}
+            salon. We think you&apos;ll{" "}
+            <FontAwesomeIcon
+              icon={faHeart}
+              className="text-rose-500"
+              size="xs"
+              fixedWidth
+              beat
+            />{" "}
             what you see.
           </div>
         </div>
@@ -126,7 +139,7 @@ const Gallery: NextPage = () => {
     <>
       <SiteHeader
         title="Aunties Pet Grooming Gallery"
-        description="Gallery of dogs and cats groomed at Aunties Pet Gromming."
+        description="Gallery of dogs and cats groomed at Aunties Pet Grooming."
       />
       <div className="w-full bg-white pb-3">
         <header className="sticky top-0 z-50">
@@ -138,7 +151,7 @@ const Gallery: NextPage = () => {
         <div className="mx-auto my-3 grid max-w-4xl grid-cols-1 gap-3 px-3 py-3 lg:grid-cols-2">
           <div className="text-center text-slate-500 lg:order-last">
             Want to see a specific breed? Use the filter to select all the
-            breeds you'd like to see.
+            breeds you&apos;d like to see.
           </div>
           <div className="flex justify-center">
             <FormControl sx={{ m: 1, width: 300 }}>
@@ -165,25 +178,24 @@ const Gallery: NextPage = () => {
         </div>
         <div className="h-full w-full">
           <div className="my-8 mx-auto grid max-w-4xl grid-cols-1 gap-3 lg:grid-cols-2 xl:grid-cols-3">
-            {galleryImages
-              .reverse()
-              .filter((image) => filterBreeds(image.breed, breedName))
-              .map((image, key) => {
-                return (
-                  <div
-                    key={key}
-                    className="my-auto flex justify-center align-middle"
-                  >
-                    <Image
-                      src={image.image}
-                      alt={image.alt}
-                      height={500 / image.aspectRatio}
-                      width={500}
-                      priority={key < 3 ? true : false}
-                    />
-                  </div>
-                );
-              })}
+            {GALLERY_IMAGES.filter((image) =>
+              filterBreeds(image.breed, breedName)
+            ).map((image, key) => {
+              return (
+                <div
+                  key={key}
+                  className="my-auto flex justify-center align-middle"
+                >
+                  <Image
+                    src={image.image}
+                    alt={image.alt}
+                    height={500 / image.aspectRatio}
+                    width={500}
+                    priority={key < 3 ? true : false}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
         <InfoFooter />
