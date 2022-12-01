@@ -8,9 +8,7 @@ export const enum CatDecoration {
 }
 
 interface CatIconSvgProps
-  extends React.PropsWithoutRef<
-    Omit<React.ComponentProps<"use">, "viewBox" | "id">
-  > {
+  extends React.PropsWithoutRef<Omit<React.ComponentProps<"use">, "viewBox">> {
   gradient?: { stopColor: string; offset: string }[];
 }
 
@@ -42,8 +40,12 @@ const CatIcon: React.FC<CatIconProps> = ({
       />
     );
   } else if (decoration == CatDecoration.ChristmasTree) {
+    const id1 = `tree_pug_${props.id ?? new Date().getTime()}`;
+    const id2 = `gift_pub_${props.id ?? new Date().getTime()}`;
+    const id3 = `pug_${props.id ?? new Date().getTime()}`;
     cat = (
       <CatSvgPath
+        id={id3}
         gradient={gradient}
         transform="scale(0.7) translate(175,200)"
       />
@@ -51,11 +53,13 @@ const CatIcon: React.FC<CatIconProps> = ({
     decor = (
       <>
         <TreeChristmasSvgPath
+          id={id1}
           transform="scale(1) translate(0,-15) "
           primaryClassName="fill-rose-700"
           secondaryClassName="fill-emerald-700"
         />
         <GiftsSvgPath
+          id={id2}
           transform="scale(0.25) translate(100,1290) "
           primaryClassName="fill-sky-700"
           secondaryClassName="fill-fuchsia-700"
@@ -79,8 +83,8 @@ export const CatSvgPath: React.FC<CatIconSvgProps> = ({
   gradient,
   ...props
 }) => {
-  const id = `cat_${new Date().getTime()}`;
-  const gid = `cat_grad_${new Date().getTime()}`;
+  const id = `cat_${props.id ?? new Date().getTime()}`;
+  const gid = `cat_grad_${props.id ?? new Date().getTime()}`;
 
   let grad;
   if (gradient != undefined) {

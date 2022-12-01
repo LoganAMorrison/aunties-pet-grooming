@@ -7,9 +7,7 @@ export const enum AussieDecoration {
 }
 
 export interface AussieIconSvgProps
-  extends React.PropsWithoutRef<
-    Omit<React.ComponentProps<"use">, "viewBox" | "id">
-  > {
+  extends React.PropsWithoutRef<Omit<React.ComponentProps<"use">, "viewBox">> {
   gradient?: { stopColor: string; offset: string }[];
 }
 
@@ -27,16 +25,18 @@ const AussieIcon: React.FC<AussieIconProps> = ({
   let aussie = <AussieSvgPath gradient={gradient} />;
   let decor;
   if (decoration == AussieDecoration.SantaHat) {
-    const id = `santa_hat_aussie_${new Date().getTime()}`;
+    const id1 = `santa_hat_aussie_${props.id ?? new Date().getTime()}`;
+    const id2 = `aussie_${props.id ?? new Date().getTime()}`;
     aussie = (
       <AussieSvgPath
+        id={id1}
         gradient={gradient}
         transform="scale(0.7) translate(100,150)"
       />
     );
     decor = (
       <HatSantaSvgPath
-        id={id}
+        id={id2}
         transform="scale(0.3) scale(-1,1) translate(-1140,100) rotate(20)"
         primaryClassName="fill-rose-700"
         secondaryClassName="fill-emerald-700"
@@ -62,8 +62,8 @@ export const AussieSvgPath: React.FC<AussieIconSvgProps> = ({
   gradient,
   ...props
 }) => {
-  const id = `aussie_${new Date().getTime()}`;
-  const gid = `aussie_grad_${new Date().getTime()}`;
+  const id = `aussie_${props.id ?? new Date().getTime()}`;
+  const gid = `aussie_grad_${props.id ?? new Date().getTime()}`;
 
   let grad;
   if (gradient != undefined) {

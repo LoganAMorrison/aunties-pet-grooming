@@ -19,6 +19,7 @@ const HomeHero = () => {
   const aussie = (
     <>
       <AussieIcon
+        id="aussie-icon-animate"
         className={sty}
         gradient={[
           { stopColor: "#7c3aed", offset: "0" },
@@ -31,6 +32,7 @@ const HomeHero = () => {
   const pug = (
     <>
       <PugIcon
+        id="pug-icon-animate"
         className={sty}
         gradient={[
           { stopColor: "#6366f1", offset: "0" },
@@ -43,6 +45,7 @@ const HomeHero = () => {
   const cat = (
     <>
       <CatIcon
+        id="cat-icon-animate"
         className={`${sty}`}
         gradient={[
           { stopColor: "#6366f1", offset: "0" },

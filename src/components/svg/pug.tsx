@@ -7,9 +7,7 @@ export const enum PugDecoration {
 }
 
 export interface PugIconSvgProps
-  extends React.PropsWithoutRef<
-    Omit<React.ComponentProps<"use">, "viewBox" | "id">
-  > {
+  extends React.PropsWithoutRef<Omit<React.ComponentProps<"use">, "viewBox">> {
   gradient?: { stopColor: string; offset: string }[];
 }
 
@@ -27,14 +25,18 @@ const PugIcon: React.FC<PugIconProps> = ({
   let aussie = <PugSvgPath gradient={gradient} />;
   let decor;
   if (decoration == PugDecoration.SantaHat) {
+    const id1 = `santa_hat_pug_${props.id ?? new Date().getTime()}`;
+    const id2 = `pug_${props.id ?? new Date().getTime()}`;
     aussie = (
       <PugSvgPath
+        id={id1}
         gradient={gradient}
         transform="scale(0.7) translate(100,150)"
       />
     );
     decor = (
       <HatSantaSvgPath
+        id={id2}
         transform="scale(0.26) translate(1350,120) rotate(18)"
         primaryClassName="fill-rose-700"
         secondaryClassName="fill-emerald-700"
@@ -60,8 +62,8 @@ export const PugSvgPath: React.FC<PugIconSvgProps> = ({
   gradient,
   ...props
 }) => {
-  const id = `pug_${new Date().getTime()}`;
-  const gid = `pug_grad_${new Date().getTime()}`;
+  const id = `pug_${props.id ?? new Date().getTime()}`;
+  const gid = `pug_grad_${props.id ?? new Date().getTime()}`;
 
   let grad;
   if (gradient != undefined) {
