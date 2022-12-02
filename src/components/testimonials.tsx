@@ -11,7 +11,7 @@ const TestimonialSchema = z.object({
   link: z.string(),
   src: z.string(),
   org: z.string(),
-  nstars: z.number(),
+  numStars: z.number(),
 });
 const TestimonialArraySchema = z.array(TestimonialSchema);
 
@@ -62,7 +62,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
               </div>
               <div>
                 <div className="relative inline-block">
-                  {[...Array(testimonial.nstars).keys()].map((_, key) => (
+                  {[...Array(testimonial.numStars).keys()].map((_, key) => (
                     <div className="inline-block" key={key}>
                       <FontAwesomeIcon
                         className="h-4 w-4 text-yellow-500"
@@ -123,6 +123,7 @@ const Testimonials = () => {
                   testimonial={testimonial}
                   key={key}
                   aria-label={`testimonial card ${key}`}
+                  role="listitem"
                 />
               ))}
             </ul>
@@ -134,6 +135,7 @@ const Testimonials = () => {
                   testimonial={testimonial}
                   key={key}
                   aria-label={`testimonial card ${key}`}
+                  role="listitem"
                 />
               ))}
             </ul>
@@ -145,6 +147,7 @@ const Testimonials = () => {
                   testimonial={testimonial}
                   key={key}
                   aria-label={`testimonial card ${key}`}
+                  role="listitem"
                 />
               ))}
             </ul>
